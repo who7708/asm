@@ -27,6 +27,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 package org.objectweb.asm;
 
+import org.objectweb.asm.utils.HexDump;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -317,7 +319,9 @@ public class ClassReader {
         outputStream.write(data, 0, bytesRead);
       }
       outputStream.flush();
-      return outputStream.toByteArray();
+      final byte[] bytes = outputStream.toByteArray();
+      System.out.println(HexDump.dumpHexString(bytes));
+      return bytes;
     } finally {
       if (close) {
         inputStream.close();
